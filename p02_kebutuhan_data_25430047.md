@@ -1,3 +1,4 @@
+
 # Dokumen Kebutuhan Data - PinkTech
 
 ## 1. Latar belakang dan aktivitas organisasi
@@ -86,7 +87,7 @@ resi pengiriman dipakai buat nyatet informasi pengiriman barang, kayak nomor ser
 | nama_produk          | produk         | Nama produk yang dijual                      | LAPTOP LOQ15        | admin            |
 | kategori_produk      | produk         | Kelompok atau jenis produk                   | laptop              | admin            |
 | harga_produk         | produk         | harga jual produk                            | 15.550.000          | admin            |
-| stok_produk          | produk         | jumlah produk yg ada                         | 15                  |
+| stok_produk          | produk         | jumlah produk yg ada                         | 15                  |                  |
 | id_pesanan           | pesanan        | nomwr unik pesanan                           | ORDI023             | admin            |
 | tanggal_pesanan      | pesanan        | waktu pesanan                                | 05-10-2026          | admin            |
 | alamat_pengiriman    | pesanan        | alamat tujuan pengiriman pesanan             | metro,lampung       | admin            |
