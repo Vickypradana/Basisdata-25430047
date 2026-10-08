@@ -28,12 +28,52 @@ harga satuan yg dipake tetap dicatat detail penjualan biar nota lama dapat tau m
 
 ## 4. Entitas kandidat dan elemen data
 
+**before modifikasi**
 | Entitas kandidat | Elemen data utama | Sumber |
 |---|---|---|
 | anggota | no anggota, npm, nama, prodi, no wa , status aktif , poin royalitas | formulir pendaftaran |
 | barang | kode , nama kategori , harga jual , stok , batas minimum stok | daftar barang fakfur |
 | penjualan | nomer nota , tanggal-jam , kasir, anggota(opsional) , bayar | nota penjulan |
 | detail penjualan | nomer nota , barang , qty , harga saat transaksi | nota penjualan |
+
+**after Modifikasi**
+### Hasil D.1 — Penandaan kunci dan atribut turunan
+
+| Entitas kandidat | Elemen data utama | Status |
+|---|---|---|
+| anggota | **id_anggota (PK)**, no_anggota (AK), npm_anggota (AK), nama_anggota, prodi_anggota, no_wa_anggota, status_anggota, poin_loyalitas | no_anggota dan npm_anggota merupakan kunci alternatif karena keduanya unik. |
+| barang | **id_barang (PK)**, kode_barang (AK), nama_barang, kategori_barang, harga_jual_barang, stok_barang, stok_min_barang | kode_barang merupakan kunci alternatif. |
+| penjualan | **id_penjualan (PK)**, no_nota_penjualan (AK), tgl_penjualan, id_petugas (FK), id_anggota (FK, opsional), bayar_penjualan | no_nota_penjualan merupakan kunci alternatif. total merupakan atribut turunan. |
+| detail_penjualan | **id_penjualan (PK, FK)**, **id_barang (PK, FK)**, qty_detail_penjualan, harga_satuan_detail_penjualan | PK komposit terdiri dari id_penjualan dan id_barang. subtotal merupakan atribut turunan. |
+
+**Keterangan:**
+- PK = Primary Key / kunci primer.
+- AK = Alternate Key / kunci alternatif.
+- FK = Foreign Key / kunci tamu.
+- `subtotal` diturunkan dari `qty × harga_satuan`.
+- `total` diturunkan dari penjumlahan subtotal dalam satu nota.
+- `poin_loyalitas` berkaitan dengan anggota dan akan dibahas lebih lanjut pada latihan Modul 3 untuk menentukan apakah cukup sebagai atribut anggota atau membutuhkan entitas riwayat poin.
+
+### Pemecahan entitas pembelian
+
+Sesuai langkah D.1, entitas kandidat **“Pembelian dan detailnya”** dipecah menjadi dua entitas:
+
+| Entitas | Atribut utama | Status |
+|---|---|---|
+| pembelian | **id_pembelian (PK)**, no_faktur_pembelian (AK), tgl_pembelian, id_pemasok (FK), status_pembelian | no_faktur_pembelian merupakan kunci alternatif. |
+| detail_pembelian | **id_pembelian (PK, FK)**, **id_barang (PK, FK)**, qty_detail_pembelian, harga_beli_detail_pembelian | PK komposit terdiri dari id_pembelian dan id_barang. |
+
+### Entitas yang digunakan setelah D.1
+
+Hasil identifikasi D.1 menjadi:
+1. `anggota`
+2. `barang`
+3. `petugas`
+4. `penjualan`
+5. `detail_penjualan`
+6. `pemasok`
+7. `pembelian`
+8. `detail_pembelian`
 
 ## 5. Aturan bisnis
 | Kode | Aturan bisnis |
